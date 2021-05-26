@@ -63,29 +63,8 @@ export const getErc721Contract = (address: string, web3?: Web3) => {
 export const getLpContract = (address: string, web3?: Web3) => {
   return getContract(lpTokenAbi, address, web3)
 }
-export const getIfoV1Contract = (address: string, web3?: Web3) => {
-  return getContract(ifoV1Abi, address, web3)
-}
-export const getIfoV2Contract = (address: string, web3?: Web3) => {
-  return getContract(ifoV2Abi, address, web3)
-}
-export const getSouschefContract = (id: number, web3?: Web3) => {
-  const config = poolsConfig.find((pool) => pool.sousId === id)
-  const abi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
-  return getContract(abi, getAddress(config.contractAddress), web3)
-}
-export const getSouschefV2Contract = (id: number, web3?: Web3) => {
-  const config = poolsConfig.find((pool) => pool.sousId === id)
-  return getContract(sousChefV2, getAddress(config.contractAddress), web3)
-}
-export const getPointCenterIfoContract = (web3?: Web3) => {
-  return getContract(pointCenterIfo, getPointCenterIfoAddress(), web3)
-}
 export const getCakeContract = (web3?: Web3) => {
   return getContract(cakeAbi, getCakeAddress(), web3)
-}
-export const getProfileContract = (web3?: Web3) => {
-  return getContract(profileABI, getPancakeProfileAddress(), web3)
 }
 export const getPancakeRabbitContract = (web3?: Web3) => {
   return getContract(pancakeRabbitsAbi, getPancakeRabbitsAddress(), web3)
@@ -96,29 +75,14 @@ export const getBunnyFactoryContract = (web3?: Web3) => {
 export const getBunnySpecialContract = (web3?: Web3) => {
   return getContract(bunnySpecialAbi, getBunnySpecialAddress(), web3)
 }
-export const getLotteryContract = (web3?: Web3) => {
-  return getContract(lotteryAbi, getLotteryAddress(), web3)
-}
-export const getLotteryTicketContract = (web3?: Web3) => {
-  return getContract(lotteryTicketAbi, getLotteryTicketAddress(), web3)
-}
 export const getMasterchefContract = (web3?: Web3) => {
   return getContract(masterChef, getMasterChefAddress(), web3)
 }
 export const getClaimRefundContract = (web3?: Web3) => {
   return getContract(claimRefundAbi, getClaimRefundAddress(), web3)
 }
-export const getTradingCompetitionContract = (web3?: Web3) => {
-  return getContract(tradingCompetitionAbi, getTradingCompetitionAddress(), web3)
-}
-export const getEasterNftContract = (web3?: Web3) => {
-  return getContract(easterNftAbi, getEasterNftAddress(), web3)
-}
 export const getCakeVaultContract = (web3?: Web3) => {
   return getContract(cakeVaultAbi, getCakeVaultAddress(), web3)
-}
-export const getPredictionsContract = (web3?: Web3) => {
-  return getContract(predictionsAbi, getPredictionsAddress(), web3)
 }
 export const getChainlinkOracleContract = (web3?: Web3) => {
   return getContract(chainlinkOracleAbi, getChainlinkOracleAddress(), web3)

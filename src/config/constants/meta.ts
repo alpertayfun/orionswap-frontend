@@ -11,34 +11,10 @@ export const customMeta: { [key: string]: PageMeta } = {
   '/': {
     title: 'Home | PancakeSwap',
   },
-  '/competition': {
-    title: 'Trading Battle | PancakeSwap',
-  },
-  '/prediction': {
-    title: 'Prediction | PancakeSwap',
-  },
   '/farms': {
     title: 'Farms | PancakeSwap',
   },
   '/pools': {
     title: 'Pools | PancakeSwap',
-  },
-  '/lottery': {
-    title: 'Lottery | PancakeSwap',
-  },
-  '/collectibles': {
-    title: 'Collectibles | PancakeSwap',
-  },
-  '/ifo': {
-    title: 'Initial Farm Offering | PancakeSwap',
-  },
-  '/teams': {
-    title: 'Leaderboard | PancakeSwap',
-  },
-  '/profile/tasks': {
-    title: 'Task Center | PancakeSwap',
-  },
-  '/profile': {
-    title: 'Your Profile | PancakeSwap',
   },
 }

@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { Button, AutoRenewIcon, Skeleton } from '@pancakeswap/uikit'
-import { useSousApprove } from 'hooks/useApprove'
+import { useApprove } from 'hooks/useApprove'
 import { useTranslation } from 'contexts/Localization'
 import { useERC20 } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
@@ -17,7 +17,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
   const { t } = useTranslation()
   const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
   const [requestedApproval, setRequestedApproval] = useState(false)
-  const { onApprove } = useSousApprove(stakingTokenContract, sousId)
+  const { onApprove } = useApprove(stakingTokenContract)
   const { toastSuccess, toastError } = useToast()
 
   const handleApprove = useCallback(async () => {

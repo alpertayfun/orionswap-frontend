@@ -1,8 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import poolsConfig from 'config/constants/pools'
-import { BIG_ZERO } from 'utils/bigNumber'
-import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
+import { fetchPoolsBlockLimits, fetchPoolsTotalStaking } from './fetchPools'
 import {
   fetchPoolsAllowance,
   fetchUserBalances,
@@ -61,27 +60,6 @@ export const fetchPoolsPublicDataAsync = () => async (dispatch) => {
   })
 
   dispatch(setPoolsPublicData(liveData))
-}
-
-export const fetchPoolsStakingLimitsAsync = () => async (dispatch, getState) => {
-  const poolsWithStakingLimit = getState()
-    .pools.data.filter(({ stakingLimit }) => stakingLimit !== null && stakingLimit !== undefined)
-    .map((pool) => pool.sousId)
-
-  const stakingLimits = await fetchPoolsStakingLimits(poolsWithStakingLimit)
-
-  const stakingLimitData = poolsConfig.map((pool) => {
-    if (poolsWithStakingLimit.includes(pool.sousId)) {
-      return { sousId: pool.sousId }
-    }
-    const stakingLimit = stakingLimits[pool.sousId] || BIG_ZERO
-    return {
-      sousId: pool.sousId,
-      stakingLimit: stakingLimit.toJSON(),
-    }
-  })
-
-  dispatch(setPoolsPublicData(stakingLimitData))
 }
 
 export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
