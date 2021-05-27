@@ -19,20 +19,20 @@ export const PoolsSlice = createSlice({
     setPoolsPublicData: (state, action) => {
       const livePoolsData: Pool[] = action.payload
       state.data = state.data.map((pool) => {
-        const livePoolData = livePoolsData.find((entry) => entry.sousId === pool.sousId)
+        const livePoolData = livePoolsData.find((entry) => entry.id === pool.id)
         return { ...pool, ...livePoolData }
       })
     },
     setPoolsUserData: (state, action) => {
       const userData = action.payload
       state.data = state.data.map((pool) => {
-        const userPoolData = userData.find((entry) => entry.sousId === pool.sousId)
+        const userPoolData = userData.find((entry) => entry.sousId === pool.id)
         return { ...pool, userData: userPoolData }
       })
     },
     updatePoolsUserData: (state, action) => {
       const { field, value, sousId } = action.payload
-      const index = state.data.findIndex((p) => p.sousId === sousId)
+      const index = state.data.findIndex((p) => p.id === sousId)
 
       if (index >= 0) {
         state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
@@ -50,8 +50,8 @@ export const fetchPoolsPublicDataAsync = () => async (dispatch) => {
   const totalStakings = await fetchPoolsTotalStaking()
 
   const liveData = poolsConfig.map((pool) => {
-    const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
-    const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+    const blockLimit = blockLimits.find((entry) => entry.sousId === pool.id)
+    const totalStaking = totalStakings.find((entry) => entry.sousId === pool.id)
 
     return {
       ...blockLimit,
@@ -69,11 +69,11 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
   const pendingRewards = await fetchUserPendingRewards(account)
 
   const userData = poolsConfig.map((pool) => ({
-    sousId: pool.sousId,
-    allowance: allowances[pool.sousId],
-    stakingTokenBalance: stakingTokenBalances[pool.sousId],
-    stakedBalance: stakedBalances[pool.sousId],
-    pendingReward: pendingRewards[pool.sousId],
+    sousId: pool.id,
+    allowance: allowances[pool.id],
+    stakingTokenBalance: stakingTokenBalances[pool.id],
+    stakedBalance: stakedBalances[pool.id],
+    pendingReward: pendingRewards[pool.id],
   }))
 
   dispatch(setPoolsUserData(userData))

@@ -12,9 +12,7 @@ import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import PoolCard from './components/PoolCard'
-import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
-import BountyCard from './components/BountyCard'
 
 const Pools: React.FC = () => {
   const { path } = useRouteMatch()
@@ -39,7 +37,7 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   // This pool is passed explicitly to the cake vault
-  const cakePoolData = useMemo(() => openPools.find((pool) => pool.sousId === 0), [openPools])
+  const cakePoolData = useMemo(() => openPools.find((pool) => pool.id === 0), [openPools])
 
   return (
     <>
@@ -56,9 +54,6 @@ const Pools: React.FC = () => {
               {t('High APR, low risk.')}
             </Heading>
           </Flex>
-          <Flex height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <BountyCard />
-          </Flex>
         </Flex>
       </PageHeader>
       <Page>
@@ -70,23 +65,22 @@ const Pools: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             <>
-              <CakeVaultCard pool={cakePoolData} showStakedOnly={stakedOnly} />
               {stakedOnly
                 ? orderBy(stakedOnlyOpenPools, ['sortOrder']).map((pool) => (
-                    <PoolCard key={pool.sousId} pool={pool} account={account} />
+                    <PoolCard key={pool.id} pool={pool} account={account} />
                   ))
                 : orderBy(openPools, ['sortOrder']).map((pool) => (
-                    <PoolCard key={pool.sousId} pool={pool} account={account} />
+                    <PoolCard key={pool.id} pool={pool} account={account} />
                   ))}
             </>
           </Route>
           <Route path={`${path}/history`}>
             {stakedOnly
               ? orderBy(stakedOnlyFinishedPools, ['sortOrder']).map((pool) => (
-                  <PoolCard key={pool.sousId} pool={pool} account={account} />
+                  <PoolCard key={pool.id} pool={pool} account={account} />
                 ))
               : orderBy(finishedPools, ['sortOrder']).map((pool) => (
-                  <PoolCard key={pool.sousId} pool={pool} account={account} />
+                  <PoolCard key={pool.id} pool={pool} account={account} />
                 ))}
           </Route>
         </FlexLayout>

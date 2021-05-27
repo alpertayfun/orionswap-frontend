@@ -5,14 +5,14 @@ import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useAuth from 'hooks/useAuth'
-import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceStarfieldBusd } from 'state/hooks'
 import config from './config'
 
 const Menu = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceCakeBusd()
+  const cakePriceUsd = usePriceStarfieldBusd()
   const { currentLanguage, setLanguage } = useTranslation()
 
   return (

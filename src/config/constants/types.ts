@@ -1,5 +1,3 @@
-import { TranslatableText } from 'state/types'
-
 export interface Address {
   97?: string
   56: string
@@ -40,7 +38,7 @@ export interface FarmConfig {
 }
 
 export interface PoolConfig {
-  sousId: number
+  id: number
   earningToken: Token
   stakingToken: Token
   contractAddress: Address
@@ -58,7 +56,6 @@ export type Images = {
   sm: string
   ipfs?: string
 }
-
 
 export type PageMeta = {
   title: string

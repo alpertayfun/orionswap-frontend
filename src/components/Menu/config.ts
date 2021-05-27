@@ -12,19 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://exchange.pancakeswap.finance/#/swap',
+        href: 'https://exchange.orionswap.finance/#/swap',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.pancakeswap.finance/#/pool',
-      },
-      {
-        label: 'LP Migration',
-        href: 'https://v1exchange.pancakeswap.finance/#/migrate',
-      },
-      {
-        label: 'V1 Liquidity (Old)',
-        href: 'https://v1exchange.pancakeswap.finance/#/pool',
+        href: 'https://exchange.orionswap.finance/#/pool',
       },
     ],
   },
@@ -66,27 +58,19 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Contact',
-        href: 'https://docs.pancakeswap.finance/contact-us',
-      },
-      {
-        label: 'Voting',
-        href: 'https://voting.pancakeswap.finance',
+        href: 'https://docs.orionswap.finance/contact-us',
       },
       {
         label: 'Github',
-        href: 'https://github.com/pancakeswap',
+        href: 'https://github.com/orionswap',
       },
       {
         label: 'Docs',
-        href: 'https://docs.pancakeswap.finance',
+        href: 'https://docs.orionswap.finance',
       },
       {
         label: 'Blog',
-        href: 'https://pancakeswap.medium.com',
-      },
-      {
-        label: 'Merch',
-        href: 'https://pancakeswap.creator-spring.com/',
+        href: 'https://orionswap.medium.com',
       },
     ],
   },

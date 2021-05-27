@@ -33,7 +33,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   isRemovingStake = false,
   onDismiss,
 }) => {
-  const { sousId, stakingToken, userData, stakingLimit, earningToken } = pool
+  const { id: sousId, stakingToken, userData, stakingLimit, earningToken } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { onStake } = useStake(sousId)

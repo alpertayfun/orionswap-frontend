@@ -3,6 +3,15 @@ const tokens = {
     symbol: 'BNB',
     projectLink: 'https://www.binance.com/',
   },
+  starfield: {
+    symbol: 'Starfield',
+    address: {
+      56: '',
+      97: '0xbB7e34E1fb9B951182Ad584eeE0B79b288b85b06',
+    },
+    decimals: 18,
+    projectLink: 'https://orionswap.finance/',
+  },
   cake: {
     symbol: 'CAKE',
     address: {
@@ -430,7 +439,7 @@ const tokens = {
     symbol: 'wBNB',
     address: {
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
-      97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
+      97: '0x4FaD1b1B55A191ad16788ca844cC4FD8e2f5a9b0',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
@@ -601,7 +610,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
-      97: '',
+      97: '0x2a7D9781dAD970aD014B6bdbC1D0D8d55d0d6814',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',

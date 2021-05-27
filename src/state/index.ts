@@ -5,7 +5,6 @@ import poolsReducer from './pools'
 import pricesReducer from './prices'
 import blockReducer from './block'
 
-
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   reducer: {

@@ -84,7 +84,7 @@ export const usePools = (account): Pool[] => {
 }
 
 export const usePoolFromPid = (sousId: number): Pool => {
-  const pool = useSelector((state: State) => state.pools.data.find((p) => p.sousId === sousId))
+  const pool = useSelector((state: State) => state.pools.data.find((p) => p.id === sousId))
   return transformPool(pool)
 }
 
@@ -118,11 +118,13 @@ export const usePriceBnbBusd = (): BigNumber => {
   return bnbBusdFarm.tokenPriceVsQuote ? new BigNumber(1).div(bnbBusdFarm.tokenPriceVsQuote) : BIG_ZERO
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(1)
+export const usePriceStarfieldBusd = (): BigNumber => {
+  const starfieldBnbFarm = useFarmFromPid(1)
   const bnbBusdPrice = usePriceBnbBusd()
 
-  const cakeBusdPrice = cakeBnbFarm.tokenPriceVsQuote ? bnbBusdPrice.times(cakeBnbFarm.tokenPriceVsQuote) : BIG_ZERO
+  const cakeBusdPrice = starfieldBnbFarm.tokenPriceVsQuote
+    ? bnbBusdPrice.times(starfieldBnbFarm.tokenPriceVsQuote)
+    : BIG_ZERO
 
   return cakeBusdPrice
 }

@@ -7,7 +7,7 @@ import { Image, Heading, RowType, Toggle, Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceCakeBusd, useGetApiPrices } from 'state/hooks'
+import { useFarms, usePriceStarfieldBusd, useGetApiPrices } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import usePersistState from 'hooks/usePersistState'
@@ -109,7 +109,7 @@ const Farms: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
-  const cakePrice = usePriceCakeBusd()
+  const cakePrice = usePriceStarfieldBusd()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'pancake_farm_view')
   const { account } = useWeb3React()

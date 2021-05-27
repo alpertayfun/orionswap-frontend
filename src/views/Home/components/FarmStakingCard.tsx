@@ -6,8 +6,8 @@ import { useTranslation } from 'contexts/Localization'
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
-import CakeHarvestBalance from './CakeHarvestBalance'
-import CakeWalletBalance from './CakeWalletBalance'
+import StarfieldHarvestBalance from './StarfieldHarvestBalance'
+import StarfieldWalletBalance from './StarfieldWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/cake-bg.svg');
@@ -62,11 +62,11 @@ const FarmedStakingCard = () => {
         <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
         <Block>
           <Label>{t('CAKE to Harvest')}:</Label>
-          <CakeHarvestBalance />
+          <StarfieldHarvestBalance />
         </Block>
         <Block>
           <Label>{t('CAKE in Wallet')}:</Label>
-          <CakeWalletBalance />
+          <StarfieldWalletBalance />
         </Block>
         <Actions>
           {account ? (

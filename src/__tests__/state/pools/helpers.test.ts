@@ -50,10 +50,7 @@ describe('transformUserData', () => {
 
 describe('transformPool', () => {
   // Transform pool object with the sous id for a label. For display purposes only.
-  const poolTable: [number, PoolConfig][] = poolsConfig.map((poolsConfigItem) => [
-    poolsConfigItem.sousId,
-    poolsConfigItem,
-  ])
+  const poolTable: [number, PoolConfig][] = poolsConfig.map((poolsConfigItem) => [poolsConfigItem.id, poolsConfigItem])
   it.each(poolTable)('transforms pool %d correctly', (sousId, config) => {
     const pool = {
       ...config,
