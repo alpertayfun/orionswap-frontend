@@ -25,8 +25,8 @@ const StarfieldHarvestBalance = () => {
     }
     return accum + earningNumber.div(DEFAULT_TOKEN_DECIMAL).toNumber()
   }, 0)
-  const cakePriceBusd = usePriceStarfieldBusd()
-  const earningsBusd = new BigNumber(earningsSum).multipliedBy(cakePriceBusd).toNumber()
+  const starfieldPriceBusd = usePriceStarfieldBusd()
+  const earningsBusd = new BigNumber(earningsSum).multipliedBy(starfieldPriceBusd).toNumber()
 
   if (!account) {
     return (
@@ -39,7 +39,7 @@ const StarfieldHarvestBalance = () => {
   return (
     <Block>
       <CardValue value={earningsSum} lineHeight="1.5" />
-      {!cakePriceBusd.eq(0) && <CardBusdValue value={earningsBusd} />}
+      {!starfieldPriceBusd.eq(0) && <CardBusdValue value={earningsBusd} />}
     </Block>
   )
 }

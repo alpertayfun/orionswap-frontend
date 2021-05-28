@@ -9,17 +9,9 @@ export const approve = async (lpContract, masterChefContract, account) => {
 }
 
 export const stake = async (masterChefContract, pid, amount, account) => {
-  if (pid === 0) {
-    return masterChefContract.methods
-      .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: 200000 })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
-  }
-
+  // TODO: add referall 
   return masterChefContract.methods
-    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
+    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), account)
     .send({ from: account, gas: 200000 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
@@ -27,15 +19,6 @@ export const stake = async (masterChefContract, pid, amount, account) => {
 }
 
 export const unstake = async (masterChefContract, pid, amount, account) => {
-  if (pid === 0) {
-    return masterChefContract.methods
-      .leaveStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: 200000 })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
-  }
-
   return masterChefContract.methods
     .withdraw(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
     .send({ from: account, gas: 200000 })
@@ -45,17 +28,9 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
 }
 
 export const harvest = async (masterChefContract, pid, account) => {
-  if (pid === 0) {
-    return masterChefContract.methods
-      .leaveStaking('0')
-      .send({ from: account, gas: 200000 })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
-  }
-
+  // TODO: UPDATE REFERRAL LOGIC
   return masterChefContract.methods
-    .deposit(pid, '0')
+    .deposit(pid, '0', account)
     .send({ from: account, gas: 200000 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash

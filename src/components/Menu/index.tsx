@@ -12,7 +12,7 @@ const Menu = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceStarfieldBusd()
+  const starfieldPriceUsd = usePriceStarfieldBusd()
   const { currentLanguage, setLanguage } = useTranslation()
 
   return (
@@ -25,7 +25,7 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
+      starfieldPriceUsd={starfieldPriceUsd.toNumber()}
       links={config}
       {...props}
     />

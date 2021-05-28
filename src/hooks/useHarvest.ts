@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
-import { fetchFarmUserDataAsync, updateUserBalance, updateUserPendingReward } from 'state/actions'
+import { fetchFarmUserDataAsync } from 'state/actions'
 import { harvest } from 'utils/callHelpers'
 import { useMasterchef } from './useContract'
 

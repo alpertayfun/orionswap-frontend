@@ -36,9 +36,6 @@ const Pools: React.FC = () => {
   )
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
-  // This pool is passed explicitly to the cake vault
-  const cakePoolData = useMemo(() => openPools.find((pool) => pool.id === 0), [openPools])
-
   return (
     <>
       <PageHeader>

@@ -12,7 +12,7 @@ const farms: FarmConfig[] = [
       97: '0xbB7e34E1fb9B951182Ad584eeE0B79b288b85b06',
       56: '',
     },
-    token: tokens.syrup,
+    token: tokens.starfield,
     quoteToken: tokens.wbnb,
   },
   {
@@ -22,7 +22,7 @@ const farms: FarmConfig[] = [
       97: '0xd11fB02Be004575EE350BD8b1Da952E4305A465F',
       56: '',
     },
-    token: tokens.cake,
+    token: tokens.starfield,
     quoteToken: tokens.wbnb,
   },
   {

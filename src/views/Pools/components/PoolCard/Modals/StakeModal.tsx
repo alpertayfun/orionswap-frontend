@@ -26,7 +26,6 @@ const StyledLink = styled(Link)`
 `
 
 const StakeModal: React.FC<StakeModalProps> = ({
-  isBnbPool,
   pool,
   stakingTokenBalance,
   stakingTokenPrice,

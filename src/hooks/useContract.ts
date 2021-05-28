@@ -5,6 +5,7 @@ import {
   getStarfieldContract,
   getMasterchefContract,
   getChainlinkOracleContract,
+  getMasterChefPoolContract
 } from 'utils/contractHelpers'
 
 /**
@@ -24,6 +25,12 @@ export const useStarfield = () => {
 export const useMasterchef = () => {
   const web3 = useWeb3()
   return useMemo(() => getMasterchefContract(web3), [web3])
+}
+
+// get pool info from master chef
+export const useMasterchefPool = (id) => {
+  const web3 = useWeb3()
+  return useMemo(() => getMasterChefPoolContract(id, web3), [id, web3])
 }
 
 export const useChainlinkOracleContract = () => {
