@@ -8,15 +8,15 @@ BigNumber.config({
 
 export const BSC_BLOCK_TIME = 3
 
-// TODO: Farm pool for cake burning?? Dig in and get details
+// TODO: Farm pool for Starfield burning?? Dig in and get details
 
 // STARFIELD_PER_BLOCK details
 // 100 Starfield is minted per block
-// 10 Starfield per block is sent to Burn pool (A farm just for burning cake)
-// 50 Starfield per block goes to CAKE syrup pool
+// 10 Starfield per block is sent to Burn pool (A farm just for burning Starfield)
+// 50 Starfield per block goes to Starfield Galaxy pool
 // 50 Starfield per block goes to Yield farms
 // STARFIELD_PER_BLOCK in config/index.ts = 100 as we only change the amount sent to the burn pool which is effectively a farm.
-// CAKE/Block in src/views/Home/components/CakeStats.tsx = 100 (40 - Amount sent to burn pool)
+// Starfield/Block in src/views/Home/components/StarfieldStats.tsx = 100 (40 - Amount sent to burn pool)
 
 export const STARFIELD_PER_BLOCK = new BigNumber(100)
 export const BLOCKS_PER_YEAR = new BigNumber((60 / BSC_BLOCK_TIME) * 60 * 24 * 365) // 10512000

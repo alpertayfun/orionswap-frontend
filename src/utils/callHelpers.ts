@@ -9,7 +9,7 @@ export const approve = async (lpContract, masterChefContract, account) => {
 }
 
 export const stake = async (masterChefContract, pid, amount, account) => {
-  // TODO: add referall 
+  // TODO: add referall
   return masterChefContract.methods
     .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), account)
     .send({ from: account, gas: 200000 })

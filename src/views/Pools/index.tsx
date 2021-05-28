@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image } from '@pancakeswap/uikit'
+import { Heading, Flex, Image } from '@orionswap/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -42,7 +42,7 @@ const Pools: React.FC = () => {
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('Syrup Pools')}
+              {t('Galaxy Pools')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Simply stake tokens to earn.')}
@@ -81,14 +81,6 @@ const Pools: React.FC = () => {
                 ))}
           </Route>
         </FlexLayout>
-        <Image
-          mx="auto"
-          mt="12px"
-          src="/images/3d-syrup-bunnies.png"
-          alt="Pancake illustration"
-          width={192}
-          height={184.5}
-        />
       </Page>
     </>
   )

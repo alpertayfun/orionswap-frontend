@@ -3,7 +3,7 @@ import { PageMeta } from './types'
 export const DEFAULT_META: PageMeta = {
   title: 'OrionSwap',
   description:
-    'The most popular AMM on BSC by user count! Earn CAKE through yield farming or win it in the Lottery, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by PancakeSwap), NFTs, and more, on a platform you can trust.',
+    'The best DEX on Binance Smart Chain! Earn Starfields through yield farming, then stake it in Galaxy Pools to earn more tokens! We charge the lowest fees for swaps and give the highest percentage you can find for liquidity providers.',
   image: 'https://OrionSwap.finance/images/hero.png',
 }
 

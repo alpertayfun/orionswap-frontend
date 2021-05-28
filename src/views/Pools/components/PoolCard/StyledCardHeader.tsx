@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardHeader, Heading, Text, Flex, Image } from '@pancakeswap/uikit'
+import { CardHeader, Heading, Text, Flex, Image } from '@orionswap/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 
@@ -27,9 +27,9 @@ const StyledCardHeader: React.FC<{
 }) => {
   const { t } = useTranslation()
   const poolImageSrc = isAutoVault
-    ? `cake-cakevault.svg`
+    ? `Starfield-cakevault.svg`
     : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
-  const isCakePool = earningTokenSymbol === 'CAKE' && stakingTokenSymbol === 'CAKE'
+  const isCakePool = earningTokenSymbol === 'Starfield' && stakingTokenSymbol === 'Starfield'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
@@ -38,7 +38,7 @@ const StyledCardHeader: React.FC<{
       return `${t('Auto')}`
     }
     if (isCakePool) {
-      // manual cake
+      // manual Starfield
       return `${t('Manual')}`
     }
     // all other pools
@@ -50,7 +50,7 @@ const StyledCardHeader: React.FC<{
       return `${t('Automatic restaking')}`
     }
     if (isCakePool) {
-      return `${t('Earn CAKE, stake CAKE')}`
+      return `${t('Earn Starfield, stake Starfield')}`
     }
     return `${t('Stake')} ${stakingTokenSymbol}`
   }

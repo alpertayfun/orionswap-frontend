@@ -5,7 +5,7 @@ import {
   getStarfieldContract,
   getMasterchefContract,
   getChainlinkOracleContract,
-  getMasterChefPoolContract
+  getMasterChefPoolContract,
 } from 'utils/contractHelpers'
 
 /**

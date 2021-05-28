@@ -11,7 +11,7 @@ import {
   Flex,
   NotificationDot,
   Link as UiKitLink,
-} from '@pancakeswap/uikit'
+} from '@orionswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const ButtonText = styled(Text)`
@@ -52,7 +52,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools }) 
         </Flex>
       </Flex>
       <Flex ml="24px" alignItems="center" justifyContent="flex-end">
-        <StyledLink external href="https://docs.pancakeswap.finance/syrup-pools/syrup-pool">
+        <StyledLink external href="https://docs.OrionSwap.finance/Galaxy-pools/Galaxy-pool">
           <Button px={['14px', null, null, null, '20px']} variant="subtle">
             <ButtonText color="backgroundAlt" bold fontSize="16px">
               {t('Help')}
