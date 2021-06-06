@@ -9,17 +9,7 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'Starfield',
     lpAddresses: {
-      97: '0xbB7e34E1fb9B951182Ad584eeE0B79b288b85b06',
-      56: '',
-    },
-    token: tokens.starfield,
-    quoteToken: tokens.wbnb,
-  },
-  {
-    pid: 1,
-    lpSymbol: 'Starfield-BNB LP',
-    lpAddresses: {
-      97: '0xd11fB02Be004575EE350BD8b1Da952E4305A465F',
+      97: '0x2F6BD2B6ACc688B14fbA499eA0082bD93A04b0CE',
       56: '',
     },
     token: tokens.starfield,
@@ -27,9 +17,19 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 2,
+    lpSymbol: 'Starfield-BNB LP',
+    lpAddresses: {
+      97: '0xdfa8949999B3b066ed4Fd19Da777571036293087',
+      56: '',
+    },
+    token: tokens.starfield,
+    quoteToken: tokens.wbnb,
+  },
+  {
+    pid: 3,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
-      97: '0x2cEA2928935D6812f3CB038fA03DD42F24682224',
+      97: '0xbfeE2d3726c5C544c9173Be215a642648552Cff8',
       56: '',
     },
     token: tokens.busd,

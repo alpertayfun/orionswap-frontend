@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "react-scripts start",
+    "start": "PORT=3006 react-scripts start",
     "build": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -12,11 +12,6 @@
     "format:check": "prettier --check --loglevel error 'src/**/*.{js,jsx,ts,tsx}'",
     "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "generate:config": "ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/generateConfig"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn format:check"
-    }
   },
   "browserslist": {
     "production": [
@@ -71,7 +66,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
-    "@orionswap/eslint-config-pancake": "^1.1.0",
+    "@orionswap/eslint-config-orion": "^1.1.0",
     "@types/jest": "^26.0.23",
     "@types/react-redux": "^7.1.16",
     "@types/react-transition-group": "^4.4.1",

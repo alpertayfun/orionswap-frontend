@@ -7,7 +7,7 @@ const tokens = {
     symbol: 'Starfield',
     address: {
       56: '',
-      97: '0xbB7e34E1fb9B951182Ad584eeE0B79b288b85b06',
+      97: '0x2F6BD2B6ACc688B14fbA499eA0082bD93A04b0CE',
     },
     decimals: 18,
     projectLink: 'https://orionswap.finance/',
@@ -439,7 +439,7 @@ const tokens = {
     symbol: 'wBNB',
     address: {
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
-      97: '0x4FaD1b1B55A191ad16788ca844cC4FD8e2f5a9b0',
+      97: '0x4bab122b3e4ef87d02f57e327ab1b5e798a2b414',
     },
     decimals: 18,
     projectLink: 'https://OrionSwap.finance/',

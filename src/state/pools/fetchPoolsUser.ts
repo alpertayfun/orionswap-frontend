@@ -16,10 +16,11 @@ const web3 = getWeb3NoAccount()
 const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {
+  const masterChefAddress = getMasterChefAddress()
   const calls = nonBnbPools.map((p) => ({
     address: getAddress(p.stakingToken.address),
     name: 'allowance',
-    params: [account, getAddress(p.contractAddress)],
+    params: [account, masterChefAddress],
   }))
 
   const allowances = await multicall(erc20ABI, calls)

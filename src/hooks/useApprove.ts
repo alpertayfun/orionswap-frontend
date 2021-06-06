@@ -4,7 +4,7 @@ import { Contract } from 'web3-eth-contract'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance, fetchFarmUserDataAsync } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useMasterchefPool } from './useContract'
+import { useMasterchef } from './useContract'
 
 // Approve a Farm
 export const useApprove = (lpContract: Contract) => {
@@ -29,17 +29,17 @@ export const useApprove = (lpContract: Contract) => {
 export const usePoolApprove = (lpContract: Contract, id) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
-  const sousChefContract = useMasterchefPool(id)
+  const masterChefContract = useMasterchef()
 
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await approve(lpContract, sousChefContract, account)
+      const tx = await approve(lpContract, masterChefContract, account)
       dispatch(updateUserAllowance(id, account))
       return tx
     } catch (e) {
       return false
     }
-  }, [account, dispatch, lpContract, sousChefContract, id])
+  }, [account, dispatch, lpContract, masterChefContract, id])
 
   return { onApprove: handleApprove }
 }

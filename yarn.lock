@@ -2052,10 +2052,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@pancakeswap/eslint-config-pancake@^1.1.0":
+"@orionswap/eslint-config-orion@^1.1.0":
   version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/eslint-config-pancake/-/eslint-config-pancake-1.1.0.tgz#ddb916af3726359095207306cfc87098cec43f41"
-  integrity sha512-TGyHaDZjXPtubV39S4vPVVRZk9FgsSyBwP6qTP1/H0+nUoKEh+RIUs/nCVxZgN7f8MbbVioLg00gVqV0XI8a7Q==
+  resolved "https://registry.yarnpkg.com/@orionswap/eslint-config-orion/-/eslint-config-orion-1.1.0.tgz#85a9ba06dedc2f4da6aaec65b0b4cd213c21b980"
+  integrity sha512-XSP1/WD+tntJ02V6FP8Gy6/ccdI5IuQ1ej77RXZs5G1G/1I108yBDIYVUTjr2Aa/6OqP7m6XE2bRGAXXJz5qkA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.7.0"
     "@typescript-eslint/parser" "^4.7.0"
@@ -2066,10 +2066,10 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@orionswap/uikit@^0.32.2":
-  version "0.32.2"
-  resolved "https://registry.yarnpkg.com/@orionswap/uikit/-/uikit-0.32.2.tgz#be525dcc2043be2419d1abc86ea6cee166eafffb"
-  integrity sha512-xmNnmjRtOJGKyRogjNjIsd7otG+L/1ExIhIdXgFLO6Z4MuPdAbSo5KGuXDZbg7IemwIlVhps2evNnS1ytAqBkA==
+"@orionswap/uikit@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@orionswap/uikit/-/uikit-0.1.0.tgz#c70879b18cd02d05987327b7407dbffe22da31fa"
+  integrity sha512-qBaWtNfWCD1FqQOPXsDKhPQbo9Qrvm51N5n+lY0xXDnfSY20F8n+11y26ODmzZ9HKkNKOIdlZGnLShwtkXuyYg==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

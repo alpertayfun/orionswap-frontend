@@ -1,11 +1,9 @@
 import Web3 from 'web3'
 import { AbiItem } from 'web3-utils'
 import web3NoAccount from 'utils/web3'
-import { poolsConfig } from 'config/constants'
-import { PoolCategory } from 'config/constants/types'
 
 // Addresses
-import { getAddress, getStarfieldAddress, getMasterChefAddress, getChainlinkOracleAddress } from 'utils/addressHelpers'
+import { getStarfieldAddress, getMasterChefAddress, getChainlinkOracleAddress } from 'utils/addressHelpers'
 
 // ABI
 import bep20Abi from 'config/abi/erc20.json'
@@ -32,9 +30,4 @@ export const getMasterchefContract = (web3?: Web3) => {
 }
 export const getChainlinkOracleContract = (web3?: Web3) => {
   return getContract(chainlinkOracleAbi, getChainlinkOracleAddress(), web3)
-}
-
-export const getMasterChefPoolContract = (id: number, web3?: Web3) => {
-  const config = poolsConfig.find((pool) => pool.id === id)
-  return getContract(masterChef, getAddress(config.contractAddress), web3)
 }

@@ -11,7 +11,7 @@ export const approve = async (lpContract, masterChefContract, account) => {
 export const stake = async (masterChefContract, pid, amount, account) => {
   // TODO: add referall
   return masterChefContract.methods
-    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), account)
+    .deposit(pid, new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
     .send({ from: account, gas: 200000 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
@@ -28,9 +28,8 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
 }
 
 export const harvest = async (masterChefContract, pid, account) => {
-  // TODO: UPDATE REFERRAL LOGIC
   return masterChefContract.methods
-    .deposit(pid, '0', account)
+    .deposit(pid, '0')
     .send({ from: account, gas: 200000 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
