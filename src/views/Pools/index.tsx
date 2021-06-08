@@ -20,7 +20,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const pools = usePools(account)
   const { currentBlock } = useBlock()
-  const [stakedOnly, setStakedOnly] = usePersistState(false, 'pancake_pool_staked')
+  const [stakedOnly, setStakedOnly] = usePersistState(false, 'orionswap_pool_staked')
 
   const [finishedPools, openPools] = useMemo(
     () => partition(pools, (pool) => pool.isFinished || currentBlock > pool.endBlock),

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon, Link } from '@orionswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { BASE_EXCHANGE_URL } from 'config'
+import { BASE_SWAP_URL } from 'config'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import useTheme from 'hooks/useTheme'
@@ -176,7 +176,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
-        <StyledLink external href={BASE_EXCHANGE_URL}>
+        <StyledLink external href={BASE_SWAP_URL}>
           <Button width="100%" mt="8px" variant="secondary">
             {t('Get')} {stakingToken.symbol}
           </Button>

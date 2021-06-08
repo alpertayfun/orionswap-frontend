@@ -11,12 +11,12 @@ const config: MenuEntry[] = [
     icon: 'TradeIcon',
     items: [
       {
-        label: 'Exchange',
-        href: 'https://exchange.orionswap.finance/#/swap',
+        label: 'Swap',
+        href: 'https://swap.orionswap.finance/#/swap',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.orionswap.finance/#/pool',
+        href: 'https://swap.orionswap.finance/#/pool',
       },
     ],
   },
