@@ -3,6 +3,7 @@ import { Card, CardBody, Heading, Text } from '@orionswap/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import useStarfieldPerBlock from 'hooks/useStarfieldPerBlock'
 import { useTranslation } from 'contexts/Localization'
 import { getStarfieldAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
@@ -25,6 +26,7 @@ const StarfieldStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getStarfieldAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+  const starfieldPerBlock = useStarfieldPerBlock();
 
   return (
     <StyledStarfieldStats>
@@ -42,7 +44,7 @@ const StarfieldStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('New Starfield/block')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={100} />
+          <CardValue fontSize="14px" decimals={0} value={starfieldPerBlock.toNumber()} />
         </Row>
       </CardBody>
     </StyledStarfieldStats>

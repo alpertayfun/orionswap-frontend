@@ -8,6 +8,7 @@ import BigNumber from 'bignumber.js'
 import { getFarmApr } from 'utils/apr'
 import { useFarms, usePriceStarfieldBusd, useGetApiPrices } from 'state/hooks'
 import { getAddress } from 'utils/addressHelpers'
+import useStarfieldPerBlock from 'hooks/useStarfieldPerBlock'
 
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
@@ -31,7 +32,8 @@ const EarnAPRCard = () => {
   const { t } = useTranslation()
   const { data: farmsLP } = useFarms()
   const prices = useGetApiPrices()
-  const cakePrice = usePriceStarfieldBusd()
+  const starfieldPrice = usePriceStarfieldBusd()
+  const starfieldPerBlock = useStarfieldPerBlock()
 
   const highestApr = useMemo(() => {
     const aprs = farmsLP
@@ -41,14 +43,14 @@ const EarnAPRCard = () => {
         if (farm.lpTotalInQuoteToken && prices) {
           const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]
           const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-          return getFarmApr(farm.poolWeight, cakePrice, totalLiquidity)
+          return getFarmApr(farm.poolWeight, starfieldPerBlock, starfieldPrice, totalLiquidity)
         }
         return null
       })
 
     const maxApr = max(aprs)
     return maxApr?.toLocaleString('en-US', { maximumFractionDigits: 2 })
-  }, [cakePrice, farmsLP, prices])
+  }, [starfieldPrice, farmsLP, prices])
 
   return (
     <StyledFarmStakingCard>

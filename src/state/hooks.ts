@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { getWeb3NoAccount } from 'utils/web3'
-import { getAddress } from 'utils/addressHelpers'
+import { getAddress, getStarfieldAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
 import useRefresh from 'hooks/useRefresh'
@@ -113,20 +113,8 @@ export const useGetApiPrice = (address: string) => {
   return prices[address.toLowerCase()]
 }
 
-export const usePriceBnbBusd = (): BigNumber => {
-  const bnbBusdFarm = useFarmFromPid(3)
-  return bnbBusdFarm.tokenPriceVsQuote ? new BigNumber(1).div(bnbBusdFarm.tokenPriceVsQuote) : BIG_ZERO
-}
-
 export const usePriceStarfieldBusd = (): BigNumber => {
-  const starfieldBnbFarm = useFarmFromPid(2)
-  const bnbBusdPrice = usePriceBnbBusd()
-
-  const cakeBusdPrice = starfieldBnbFarm.tokenPriceVsQuote
-    ? bnbBusdPrice.times(starfieldBnbFarm.tokenPriceVsQuote)
-    : BIG_ZERO
-
-  return cakeBusdPrice
+  return new BigNumber(useGetApiPrice(getStarfieldAddress()))
 }
 
 // Block

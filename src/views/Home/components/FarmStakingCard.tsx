@@ -10,7 +10,7 @@ import StarfieldHarvestBalance from './StarfieldHarvestBalance'
 import StarfieldWalletBalance from './StarfieldWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
-  background-image: url('/images/cake-bg.svg');
+  background-image: url('/images/starfield-bg.svg');
   background-repeat: no-repeat;
   background-position: top right;
   min-height: 376px;
@@ -59,7 +59,7 @@ const FarmedStakingCard = () => {
         <Heading scale="xl" mb="24px">
           {t('Farms & Staking')}
         </Heading>
-        <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
+        <CardImage src="/images/starfield.svg" alt="starfield logo" width={64} height={64} />
         <Block>
           <Label>{t('Starfield to Harvest')}:</Label>
           <StarfieldHarvestBalance />

@@ -4,14 +4,24 @@ import { Heading, Text, BaseLayout } from '@orionswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
+import AnnouncementCard from 'views/Home/components/AnnouncementCard'
 import StarfieldStats from 'views/Home/components/StarfieldStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 
+const Frame = styled.div`
+  background-image: url('/images/main-bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+`
+
 const Hero = styled.div`
   align-items: center;
-  background-image: url('/images/pan-bg-mobile.svg');
+  background-image: url('/images/rocket-riding.svg');
   background-repeat: no-repeat;
   background-position: top center;
+  background-size: 150px;
+  height: 250px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -21,10 +31,11 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/pan-bg2.svg'), url('/images/pan-bg.svg');
+    background-image: url('/images/orion-bg.svg'), url('/images/orion-bg2.svg');
     background-position: left center, right center;
-    height: 165px;
+    height: 210px;
     padding-top: 0;
+    margin-right: 25px;
   }
 `
 
@@ -76,23 +87,24 @@ const Home: React.FC = () => {
   const { t } = useTranslation()
 
   return (
-    <Page>
-      <Hero>
-        <Heading as="h1" scale="xl" mb="24px" color="secondary">
-          {t('OrionSwap')}
-        </Heading>
-        <Text>{t('The #1 AMM and yield farm on Binance Smart Chain.')}</Text>
-      </Hero>
-      <div>
-        <Cards>
-          <FarmStakingCard />
-        </Cards>
-        <Cards>
-          <StarfieldStats />
-          <TotalValueLockedCard />
-        </Cards>
-      </div>
-    </Page>
+    <Frame>
+      <Page>
+        <Hero>
+          <img src='/images/title-block.svg' alt='OrionSwap' width='400px'/>
+          <Text>{t('The newest and most reliable AMM on the Binance Smart Chain!')}</Text>
+        </Hero>
+        <div>
+          <Cards>
+            <FarmStakingCard />
+            <AnnouncementCard/>
+          </Cards>
+          <Cards>
+            <StarfieldStats />
+            <TotalValueLockedCard />
+          </Cards>
+        </div>
+      </Page>
+    </Frame>
   )
 }
 

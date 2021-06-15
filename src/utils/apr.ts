@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { BLOCKS_PER_YEAR, STARFIELD_PER_BLOCK } from 'config'
+import { BLOCKS_PER_YEAR } from 'config'
 
 /**
  * Get the APR value in %
@@ -24,13 +24,13 @@ export const getPoolApr = (
 /**
  * Get farm APR value in %
  * @param poolWeight allocationPoint / totalAllocationPoint
- * @param cakePriceUsd Starfield price in USD
+ * @param starfieldPriceUsd Starfield price in USD
  * @param poolLiquidityUsd Total pool liquidity in USD
  * @returns
  */
-export const getFarmApr = (poolWeight: BigNumber, cakePriceUsd: BigNumber, poolLiquidityUsd: BigNumber): number => {
-  const yearlyCakeRewardAllocation = STARFIELD_PER_BLOCK.times(BLOCKS_PER_YEAR).times(poolWeight)
-  const apr = yearlyCakeRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
+export const getFarmApr = (poolWeight: BigNumber, starfieldPerBlock: BigNumber, starfieldPriceUsd: BigNumber, poolLiquidityUsd: BigNumber): number => {
+  const yearlyStarfieldRewardAllocation = starfieldPerBlock.times(BLOCKS_PER_YEAR).times(poolWeight)
+  const apr = yearlyStarfieldRewardAllocation.times(starfieldPriceUsd).div(poolLiquidityUsd).times(100)
   return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber()
 }
 

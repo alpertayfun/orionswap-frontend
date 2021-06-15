@@ -77,6 +77,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         },
       ])
 
+      // TODO: Add lockup period
       const allocPoint = new BigNumber(info.allocPoint._hex)
       const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
 
@@ -88,7 +89,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
         poolWeight: poolWeight.toJSON(),
-        multiplier: `${allocPoint.div(100).toString()}X`,
+        multiplier: `${allocPoint.div(1000).toString()}X`,
       }
     }),
   )

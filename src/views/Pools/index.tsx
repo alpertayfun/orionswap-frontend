@@ -5,6 +5,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Heading, Flex, Image } from '@orionswap/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
+import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
 import { usePools, useBlock } from 'state/hooks'
@@ -13,6 +14,13 @@ import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
+
+const Frame = styled.div`
+  background-image: url('/images/main-bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+`
 
 const Pools: React.FC = () => {
   const { path } = useRouteMatch()
@@ -37,7 +45,7 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   return (
-    <>
+    <Frame>
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]}>
@@ -82,7 +90,7 @@ const Pools: React.FC = () => {
           </Route>
         </FlexLayout>
       </Page>
-    </>
+    </Frame>
   )
 }
 

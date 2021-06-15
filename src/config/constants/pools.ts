@@ -8,13 +8,14 @@ const pools: PoolConfig[] = [
     earningToken: tokens.starfield,
     contractAddress: {
       97: '0x2F6BD2B6ACc688B14fbA499eA0082bD93A04b0CE',
-      56: '',
+      56: '0xaB5af03653349a052B49f167f4C709599C5f3844',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
-    tokenPerBlock: '50',
+    tokenPerBlock: '55',
     sortOrder: 1,
     isFinished: false,
+    isPromoted: true,
   },
 ]
 

@@ -70,6 +70,7 @@ export const fetchFarmUserDataAsync = (account: string) => async (dispatch, getS
   const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
   const userFarmEarnings = await fetchFarmUserEarnings(account, farmsToFetch)
 
+  // TODO: update user info to include next harvest time
   const arrayOfUserDataObjects = userFarmAllowances.map((farmAllowance, index) => {
     return {
       pid: farmsToFetch[index].pid,

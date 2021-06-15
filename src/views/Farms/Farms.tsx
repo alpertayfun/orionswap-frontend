@@ -9,6 +9,7 @@ import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import { useFarms, usePriceStarfieldBusd, useGetApiPrices } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
+import useStarfieldPerBlock from 'hooks/useStarfieldPerBlock'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
@@ -29,6 +30,13 @@ import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+
+const Frame = styled.div`
+  background-image: url('/images/main-bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+`
 
 const ControlContainer = styled.div`
   display: flex;
@@ -109,12 +117,13 @@ const Farms: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
-  const cakePrice = usePriceStarfieldBusd()
+  const starfieldPrice = usePriceStarfieldBusd()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, 'orionswap_farm_view')
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
+  const starfieldPerBlock = useStarfieldPerBlock()
 
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
@@ -176,7 +185,7 @@ const Farms: React.FC = () => {
 
         const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-        const apr = isActive ? getFarmApr(farm.poolWeight, cakePrice, totalLiquidity) : 0
+        const apr = isActive ? getFarmApr(farm.poolWeight, starfieldPerBlock, starfieldPrice, totalLiquidity) : 0
 
         return { ...farm, apr, liquidity: totalLiquidity }
       })
@@ -189,7 +198,7 @@ const Farms: React.FC = () => {
       }
       return farmsToDisplayWithAPR
     },
-    [cakePrice, prices, query, isActive],
+    [starfieldPrice, starfieldPerBlock, prices, query, isActive],
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -285,7 +294,7 @@ const Farms: React.FC = () => {
         lpLabel,
         tokenAddress,
         quoteTokenAddress,
-        cakePrice,
+        cakePrice: starfieldPrice,
         originalValue: farm.apr,
       },
       farm: {
@@ -344,17 +353,17 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed={false} />
+              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} removed={false} />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} removed />
             ))}
           </Route>
           <Route exact path={`${path}/archived`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={cakePrice} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} removed />
             ))}
           </Route>
         </FlexLayout>
@@ -367,7 +376,7 @@ const Farms: React.FC = () => {
   }
 
   return (
-    <>
+    <Frame>
       <PageHeader>
         <Heading as="h1" scale="xxl" color="secondary" mb="24px">
           {t('Farms')}
@@ -424,7 +433,7 @@ const Farms: React.FC = () => {
         {renderContent()}
         <div ref={loadMoreRef} />
       </Page>
-    </>
+    </Frame>
   )
 }
 
