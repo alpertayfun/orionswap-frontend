@@ -7,7 +7,7 @@ import {
   fetchFarmUserEarnings,
   fetchFarmUserAllowances,
   fetchFarmUserTokenBalances,
-  fetchFarmUserStakedBalances,
+  fetchFarmUserInfo,
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
 
@@ -19,6 +19,7 @@ const noAccountFarmConfig = farmsConfig.map((farm) => ({
     allowance: '0',
     tokenBalance: '0',
     stakedBalance: '0',
+    nextHarvest: '0',
     earnings: '0',
   },
 }))
@@ -67,16 +68,16 @@ export const fetchFarmUserDataAsync = (account: string) => async (dispatch, getS
   const farmsToFetch = fetchArchived ? farmsConfig : nonArchivedFarms
   const userFarmAllowances = await fetchFarmUserAllowances(account, farmsToFetch)
   const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
-  const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
+  const userInfo = await fetchFarmUserInfo(account, farmsToFetch)
   const userFarmEarnings = await fetchFarmUserEarnings(account, farmsToFetch)
 
-  // TODO: update user info to include next harvest time
   const arrayOfUserDataObjects = userFarmAllowances.map((farmAllowance, index) => {
     return {
       pid: farmsToFetch[index].pid,
       allowance: userFarmAllowances[index],
       tokenBalance: userFarmTokenBalances[index],
-      stakedBalance: userStakedBalances[index],
+      stakedBalance: userInfo[index].stakedBalance,
+      nextHarvest: userInfo[index].nextHarvestUntil,
       earnings: userFarmEarnings[index],
     }
   })

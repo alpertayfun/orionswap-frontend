@@ -76,9 +76,10 @@ interface FarmCardProps {
   cakePrice?: BigNumber
   provider?: ProviderType
   account?: string
+  userDataReady?: boolean
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account, userDataReady }) => {
   const { t } = useTranslation()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
@@ -134,7 +135,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
           <Text>{t('Earn')}:</Text>
           <Text bold>{earnLabel}</Text>
         </Flex>
-        <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />
+        <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} userDataReady={userDataReady}/>
         <Divider />
         <ExpandableSectionButton
           onClick={() => setShowExpandableSection(!showExpandableSection)}

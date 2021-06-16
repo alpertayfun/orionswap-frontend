@@ -353,17 +353,17 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} removed={false} />
+              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} removed={false} userDataReady={userDataReady} />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} userDataReady={userDataReady} removed />
             ))}
           </Route>
           <Route exact path={`${path}/archived`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} cakePrice={starfieldPrice} account={account} userDataReady={userDataReady} removed />
             ))}
           </Route>
         </FlexLayout>

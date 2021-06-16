@@ -21,6 +21,7 @@ export interface Farm extends FarmConfig {
     allowance: string
     tokenBalance: string
     stakedBalance: string
+    nextHarvest: string
     earnings: string
   }
 }
