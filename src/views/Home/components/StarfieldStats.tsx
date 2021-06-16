@@ -6,6 +6,8 @@ import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import useStarfieldPerBlock from 'hooks/useStarfieldPerBlock'
 import { useTranslation } from 'contexts/Localization'
 import { getStarfieldAddress } from 'utils/addressHelpers'
+import tokens from 'config/constants/tokens'
+
 import CardValue from './CardValue'
 
 const StyledStarfieldStats = styled(Card)`
@@ -27,6 +29,7 @@ const StarfieldStats = () => {
   const burnedBalance = getBalanceNumber(useBurnedBalance(getStarfieldAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
   const starfieldPerBlock = useStarfieldPerBlock();
+  const starfieldDecimals = 10 ** tokens.starfield.decimals
 
   return (
     <StyledStarfieldStats>
@@ -44,7 +47,7 @@ const StarfieldStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{t('New Starfield/block')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={starfieldPerBlock.toNumber()} />
+          <CardValue fontSize="14px" decimals={0} value={starfieldPerBlock.div(starfieldDecimals).toNumber()} />
         </Row>
       </CardBody>
     </StyledStarfieldStats>
