@@ -7,6 +7,7 @@ import {
   fetchUserBalances,
   fetchUserStakeBalances,
   fetchUserPendingRewards,
+  fetchUserNextHarvests,
 } from './fetchPoolsUser'
 import { PoolsState, Pool } from '../types'
 
@@ -67,6 +68,7 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
   const stakingTokenBalances = await fetchUserBalances(account)
   const stakedBalances = await fetchUserStakeBalances(account)
   const pendingRewards = await fetchUserPendingRewards(account)
+  const nextHarvests = await fetchUserNextHarvests(account)
 
   const userData = poolsConfig.map((pool) => ({
     sousId: pool.id,
@@ -74,6 +76,7 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
     stakingTokenBalance: stakingTokenBalances[pool.id],
     stakedBalance: stakedBalances[pool.id],
     pendingReward: pendingRewards[pool.id],
+    nextHarvest: nextHarvests[pool.id]
   }))
 
   dispatch(setPoolsUserData(userData))
@@ -97,6 +100,11 @@ export const updateUserStakedBalance = (sousId: number, account: string) => asyn
 export const updateUserPendingReward = (sousId: number, account: string) => async (dispatch) => {
   const pendingRewards = await fetchUserPendingRewards(account)
   dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
+}
+
+export const updateUserNextHarvest = (sousId: number, account: string) => async (dispatch) => {
+  const nextHarvest = await fetchUserNextHarvests(account)
+  dispatch(updatePoolsUserData({ sousId, field: 'nextHarvest', value: nextHarvest[sousId] }))
 }
 
 export default PoolsSlice.reducer

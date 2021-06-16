@@ -6,5 +6,6 @@ export {
   updateUserBalance,
   updateUserPendingReward,
   updateUserStakedBalance,
+  updateUserNextHarvest,
 } from './pools'
 export { setBlock } from './block'

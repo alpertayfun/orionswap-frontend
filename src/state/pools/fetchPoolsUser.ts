@@ -91,3 +91,24 @@ export const fetchUserPendingRewards = async (account) => {
 
   return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }
 }
+
+export const fetchUserNextHarvests = async (account) => {
+  const calls = nonMasterPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'userInfo',
+    params: [account],
+  }))
+  const userInfo = await multicall(masterChefABI, calls)
+  const nextHarvests = nonMasterPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.id]: new BigNumber(userInfo[index].nextHarvestUntil._hex).toJSON(),
+    }),
+    {},
+  )
+
+  // Starfield / Starfield pool
+  const { nextHarvestUntil: masterPoolNextHarvest } = await masterChefContract.methods.userInfo('0', account).call()
+
+  return { ...nextHarvests, 0: new BigNumber(masterPoolNextHarvest).toJSON() }
+}

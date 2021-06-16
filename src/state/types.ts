@@ -36,6 +36,7 @@ export interface Pool extends PoolConfig {
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    nextHarvest: BigNumber
   }
 }
 
