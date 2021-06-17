@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HelpIcon, Skeleton, useTooltip } from '@pancakeswap/uikit'
+import { HelpIcon, Skeleton, useTooltip } from '@orionswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const ReferenceElement = styled.div`
@@ -33,10 +33,12 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
   const { t } = useTranslation()
   const tooltipContent = (
     <div>
-      {t('The multiplier represents the amount of CAKE rewards each farm gets.')}
+      {t('The multiplier represents the amount of Starfield rewards each farm gets.')}
       <br />
       <br />
-      {t('For example, if a 1x farm was getting 1 CAKE per block, a 40x farm would be getting 40 CAKE per block.')}
+      {t(
+        'For example, if a 1x farm was getting 1 Starfield per block, a 40x farm would be getting 40 Starfield per block.',
+      )}
     </div>
   )
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, {

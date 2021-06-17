@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon, Link } from '@pancakeswap/uikit'
+import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon, Link } from '@orionswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { BASE_EXCHANGE_URL } from 'config'
-import { useSousStake } from 'hooks/useStake'
-import { useSousUnstake } from 'hooks/useUnstake'
+import { BASE_SWAP_URL } from 'config'
+import useStake from 'hooks/useStake'
+import useUnstake from 'hooks/useUnstake'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
@@ -26,18 +26,17 @@ const StyledLink = styled(Link)`
 `
 
 const StakeModal: React.FC<StakeModalProps> = ({
-  isBnbPool,
   pool,
   stakingTokenBalance,
   stakingTokenPrice,
   isRemovingStake = false,
   onDismiss,
 }) => {
-  const { sousId, stakingToken, userData, stakingLimit, earningToken } = pool
+  const { id: sousId, stakingToken, userData, stakingLimit, earningToken } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
-  const { onStake } = useSousStake(sousId, isBnbPool)
-  const { onUnstake } = useSousUnstake(sousId, pool.enableEmergencyWithdraw)
+  const { onStake } = useStake(sousId)
+  const { onUnstake } = useUnstake(sousId)
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
@@ -87,7 +86,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     if (isRemovingStake) {
       // unstaking
       try {
-        await onUnstake(stakeAmount, stakingToken.decimals)
+        await onUnstake(stakeAmount)
         toastSuccess(
           `${t('Unstaked')}!`,
           t(`Your ${earningToken.symbol} earnings have also been harvested to your wallet!`),
@@ -101,7 +100,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     } else {
       try {
         // staking
-        await onStake(stakeAmount, stakingToken.decimals)
+        await onStake(stakeAmount)
         toastSuccess(`${t('Staked')}!`, t(`Your ${stakingToken.symbol} funds have been staked in the pool!`))
         setPendingTx(false)
         onDismiss()
@@ -128,9 +127,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
       )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
-        <Flex alignItems="center" minWidth="70px">
+        <Flex alignItems="center" minWidth="90px">
           <Image src={`/images/tokens/${stakingToken.symbol}.png`} width={24} height={24} alt={stakingToken.symbol} />
-          <Text ml="4px" bold>
+          <Text ml="0px" bold>
             {stakingToken.symbol}
           </Text>
         </Flex>
@@ -177,7 +176,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
-        <StyledLink external href={BASE_EXCHANGE_URL}>
+        <StyledLink external href={BASE_SWAP_URL}>
           <Button width="100%" mt="8px" variant="secondary">
             {t('Get')} {stakingToken.symbol}
           </Button>

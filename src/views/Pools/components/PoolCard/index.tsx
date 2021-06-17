@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React from 'react'
-import { CardBody, Flex, Text, CardRibbon } from '@pancakeswap/uikit'
+import { CardBody, Flex, Text, CardRibbon } from '@orionswap/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useTranslation } from 'contexts/Localization'
 import { getAddress } from 'utils/addressHelpers'
@@ -14,7 +14,7 @@ import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
-  const { sousId, stakingToken, earningToken, isFinished, userData } = pool
+  const { id: sousId, stakingToken, earningToken, isFinished, userData, isPromoted } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
@@ -23,7 +23,8 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
   return (
     <StyledCard
       isFinished={isFinished && sousId !== 0}
-      ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={`${t('Finished')}`} />}
+      ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={`${t('Finished')}`}/>}
+      isPromotedPool={ isPromoted ?? false }
     >
       <StyledCardInner>
         <StyledCardHeader

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
-import { Modal, Text, Button, OpenNewIcon, Link } from '@pancakeswap/uikit'
-import { BASE_EXCHANGE_URL } from 'config'
+import { Modal, Text, Button, OpenNewIcon, Link } from '@orionswap/uikit'
+import { BASE_SWAP_URL } from 'config'
 import useTheme from 'hooks/useTheme'
 
 interface NotEnoughTokensModalProps {
@@ -33,7 +33,7 @@ const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol
           tokensymbol: tokenSymbol,
         })}
       </Text>
-      <Button mt="24px" as="a" external href={BASE_EXCHANGE_URL}>
+      <Button mt="24px" as="a" external href={BASE_SWAP_URL}>
         {t('Buy')} {tokenSymbol}
       </Button>
       <StyledLink href="https://yieldwatch.net" external>

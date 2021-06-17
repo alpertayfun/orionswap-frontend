@@ -4,7 +4,7 @@ import { provider as ProviderType } from 'web3-core'
 import BigNumber from 'bignumber.js'
 import { getAddress } from 'utils/addressHelpers'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { Button, Flex, Text } from '@pancakeswap/uikit'
+import { Button, Flex, Text } from '@orionswap/uikit'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import useWeb3 from 'hooks/useWeb3'
@@ -25,9 +25,10 @@ interface FarmCardActionsProps {
   provider?: ProviderType
   account?: string
   addLiquidityUrl?: string
+  userDataReady?: boolean
 }
 
-const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidityUrl }) => {
+const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidityUrl, userDataReady }) => {
   const { t } = useTranslation()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses } = farm
@@ -81,13 +82,13 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
-          CAKE
+          Starfield
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Earned')}
         </Text>
       </Flex>
-      <HarvestAction earnings={earnings} pid={pid} />
+      <HarvestAction pid={pid} userDataReady={userDataReady} userData={farm.userData} />
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}

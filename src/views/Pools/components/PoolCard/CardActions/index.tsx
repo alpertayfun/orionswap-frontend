@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import React from 'react'
 import styled from 'styled-components'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { Flex, Text, Box } from '@pancakeswap/uikit'
+import { Flex, Text, Box } from '@orionswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
@@ -21,7 +21,7 @@ interface CardActionsProps {
 }
 
 const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance, stakingTokenPrice }) => {
-  const { sousId, stakingToken, earningToken, harvest, poolCategory, userData } = pool
+  const { id: sousId, stakingToken, earningToken, harvest, poolCategory, userData } = pool
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const { t } = useTranslation()
@@ -51,6 +51,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance, stakingT
               sousId={sousId}
               isBnbPool={isBnbPool}
               isLoading={isLoading}
+              nextHarvest={userData?.nextHarvest}
             />
           </>
         )}

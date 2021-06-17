@@ -1,30 +1,30 @@
 import { useEffect, useState } from 'react'
 
-/*
- * Due to Cors the api was forked and a proxy was created
- * @see https://github.com/pancakeswap/gatsby-pancake-api/commit/e811b67a43ccc41edd4a0fa1ee704b2f510aa0ba
- */
-export const baseUrl = 'https://api.pancakeswap.com/api/v1'
+export const baseUrl = 'https://api.OrionSwap.info/api'
 
 /* eslint-disable camelcase */
 
-export interface ApiTvlResponse {
-  update_at: string
-  '24h_total_volume': number
-  total_value_locked: number
-  total_value_locked_all: number
+export interface ApiStatsResponse {
+  updated_at: string
+  total_liquidity_BNB: string;
+  total_liquidity_USD: string;
+  total_volume_BNB: string;
+  total_volume_USD: string;
+  volume_BNB: string;
+  volume_USD: string;
+  tx_count: number;
 }
 
 export const useGetStats = () => {
-  const [data, setData] = useState<ApiTvlResponse | null>(null)
+  const [data, setData] = useState<ApiStatsResponse | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${baseUrl}/tvl`)
-        const responseData: ApiTvlResponse = await response.json()
+        const response = await fetch(`${baseUrl}/stats`)
+        const responseData = await response.json()
 
-        setData(responseData)
+        setData(responseData.data)
       } catch (error) {
         console.error('Unable to fetch data:', error)
       }

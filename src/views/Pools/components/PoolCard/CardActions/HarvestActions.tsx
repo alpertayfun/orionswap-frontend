@@ -1,6 +1,7 @@
 import React from 'react'
-import { Flex, Text, Button, Heading, useModal, Skeleton } from '@pancakeswap/uikit'
+import { Flex, Text, Button, Heading, useModal, Skeleton } from '@orionswap/uikit'
 import styled from 'styled-components'
+import Countdown from 'react-countdown'
 import BigNumber from 'bignumber.js'
 import { Token } from 'config/constants/types'
 import { getAddress } from 'utils/addressHelpers'
@@ -16,6 +17,7 @@ interface HarvestActionsProps {
   sousId: number
   isBnbPool: boolean
   isLoading?: boolean
+  nextHarvest: BigNumber
 }
 
 const InlineBalance = styled(Balance)`
@@ -28,6 +30,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   sousId,
   isBnbPool,
   isLoading = false,
+  nextHarvest
 }) => {
   const { t } = useTranslation()
   const earningTokenPrice = useGetApiPrice(earningToken.address ? getAddress(earningToken.address) : '')
@@ -50,6 +53,10 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
       isCompoundPool={isCompoundPool}
     />,
   )
+
+  const renderCountdown = ({hours, minutes, seconds }) => {
+    return <span>{hours}:{minutes}:{seconds} {t('till harvest')}</span>
+  }
 
   return (
     <Flex flexDirection="column" mb="16px">
@@ -82,8 +89,9 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           )}
         </Flex>
         <Flex>
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
-            {isCompoundPool ? t('Collect') : t('Harvest')}
+          <Button disabled={!hasEarnings || !nextHarvest || Number(nextHarvest) > Math.floor(Date.now() / 1000)} onClick={onPresentCollect}>
+            { Number(nextHarvest) > Math.floor(Date.now() / 1000) ? 
+              <Countdown date={Number(nextHarvest) * 1000} renderer={renderCountdown}/> : t('Harvest')}
           </Button>
         </Flex>
       </Flex>

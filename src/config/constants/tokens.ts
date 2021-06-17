@@ -3,6 +3,15 @@ const tokens = {
     symbol: 'BNB',
     projectLink: 'https://www.binance.com/',
   },
+  starfield: {
+    symbol: 'Starfield',
+    address: {
+      56: '0xaB5af03653349a052B49f167f4C709599C5f3844',
+      97: '0x2F6BD2B6ACc688B14fbA499eA0082bD93A04b0CE',
+    },
+    decimals: 18,
+    projectLink: 'https://orionswap.finance/',
+  },
   cake: {
     symbol: 'CAKE',
     address: {
@@ -430,10 +439,10 @@ const tokens = {
     symbol: 'wBNB',
     address: {
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
-      97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
+      97: '0x4bab122b3e4ef87d02f57e327ab1b5e798a2b414',
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://OrionSwap.finance/',
   },
   blink: {
     symbol: 'BLINK',
@@ -570,15 +579,6 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://compound.finance/',
   },
-  syrup: {
-    symbol: 'SYRUP',
-    address: {
-      56: '0x009cF7bC57584b7998236eff51b98A168DceA9B0',
-      97: '0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9',
-    },
-    decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
-  },
   bifi: {
     symbol: 'BIFI',
     address: {
@@ -601,7 +601,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
-      97: '',
+      97: '0x2a7D9781dAD970aD014B6bdbC1D0D8d55d0d6814',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@pancakeswap/uikit'
+import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@orionswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr } from 'utils/apr'
@@ -9,7 +9,7 @@ import { useGetApiPrice } from 'state/hooks'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'
 import { Pool } from 'state/types'
-import { BASE_EXCHANGE_URL } from 'config'
+import { BASE_SWAP_URL } from 'config'
 
 interface AprRowProps {
   pool: Pool
@@ -30,7 +30,7 @@ const AprRow: React.FC<AprRowProps> = ({
   const { stakingToken, earningToken, totalStaked, isFinished, tokenPerBlock } = pool
 
   const tooltipContent = isAutoVault
-    ? t('APY includes compounding, APR doesn’t. This pool’s CAKE is compounded automatically, so we show APY.')
+    ? t('APY includes compounding, APR doesn’t. This pool’s Starfield is compounded automatically, so we show APY.')
     : t('This pool’s rewards aren’t compounded automatically, so we show APR')
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-end' })
@@ -68,14 +68,14 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const apyModalLink =
     stakingToken.address &&
-    `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
+    `${BASE_SWAP_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
       tokenPrice={earningTokenPrice}
       apr={apr}
       linkLabel={`${t('Get')} ${stakingToken.symbol}`}
-      linkHref={apyModalLink || BASE_EXCHANGE_URL}
+      linkHref={apyModalLink || BASE_SWAP_URL}
       earningTokenSymbol={earningToken.symbol}
       roundingDecimals={isHighValueToken ? 4 : 2}
       compoundFrequency={compoundFrequency}

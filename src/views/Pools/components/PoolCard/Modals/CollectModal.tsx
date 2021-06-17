@@ -10,11 +10,11 @@ import {
   ButtonMenuItem,
   HelpIcon,
   useTooltip,
-} from '@pancakeswap/uikit'
+} from '@orionswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { useSousHarvest } from 'hooks/useHarvest'
-import { useSousStake } from 'hooks/useStake'
+import { useHarvest } from 'hooks/useHarvest'
+import useStake from 'hooks/useStake'
 import useToast from 'hooks/useToast'
 import { Token } from 'config/constants/types'
 
@@ -35,21 +35,20 @@ const CollectModal: React.FC<CollectModalProps> = ({
   earningToken,
   earningsDollarValue,
   sousId,
-  isBnbPool,
   isCompoundPool = false,
   onDismiss,
 }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
-  const { onReward } = useSousHarvest(sousId, isBnbPool)
-  const { onStake } = useSousStake(sousId, isBnbPool)
+  const { onReward } = useHarvest(sousId)
+  const { onStake } = useStake(sousId)
   const [pendingTx, setPendingTx] = useState(false)
   const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
-      <Text mb="12px">{t('Compound: collect and restake CAKE into pool.')}</Text>
-      <Text>{t('Harvest: collect CAKE and send to wallet')}</Text>
+      <Text mb="12px">{t('Compound: collect and restake Starfield into pool.')}</Text>
+      <Text>{t('Harvest: collect Starfield and send to wallet')}</Text>
     </>,
     { placement: 'bottom-end', tooltipOffset: [20, 10] },
   )
@@ -59,7 +58,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
     // compounding
     if (shouldCompound) {
       try {
-        await onStake(fullBalance, earningToken.decimals)
+        await onStake(fullBalance)
         toastSuccess(
           `${t('Compounded')}!`,
           t(`Your ${earningToken.symbol} earnings have been re-invested into the pool!`),

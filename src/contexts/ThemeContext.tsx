@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { ThemeProvider as SCThemeProvider } from 'styled-components'
-import { light, dark } from '@pancakeswap/uikit'
+import { dark } from '@orionswap/uikit'
 
 const CACHE_KEY = 'IS_DARK'
 
-const ThemeContext = React.createContext({ isDark: null, toggleTheme: () => null })
+const ThemeContext = React.createContext({ isDark: true, toggleTheme: () => null })
 
 const ThemeContextProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    const isDarkUserSetting = localStorage.getItem(CACHE_KEY)
-    return isDarkUserSetting ? JSON.parse(isDarkUserSetting) : false
+    // const isDarkUserSetting = localStorage.getItem(CACHE_KEY)
+    // return isDarkUserSetting ? JSON.parse(isDarkUserSetting) : false
+    return true
   })
 
   const toggleTheme = () => {
@@ -20,8 +21,8 @@ const ThemeContextProvider = ({ children }) => {
   }
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      <SCThemeProvider theme={isDark ? dark : light}>{children}</SCThemeProvider>
+    <ThemeContext.Provider value={{ isDark, toggleTheme: () => null }}>
+      <SCThemeProvider theme={dark}>{children}</SCThemeProvider>
     </ThemeContext.Provider>
   )
 }

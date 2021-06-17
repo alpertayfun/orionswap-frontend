@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
-import { FallingBunnies, FallingBunniesProps, useKonamiCheatCode } from '@pancakeswap/uikit'
+import { FallingAstronauts, FallingAstronautProps, useKonamiCheatCode } from '@orionswap/uikit'
 
-const EasterEgg: React.FC<FallingBunniesProps> = (props) => {
+const EasterEgg: React.FC<FallingAstronautProps> = (props) => {
   const [show, setShow] = useState(false)
   const startFalling = useCallback(() => setShow(true), [setShow])
   useKonamiCheatCode(startFalling)
@@ -9,7 +9,7 @@ const EasterEgg: React.FC<FallingBunniesProps> = (props) => {
   if (show) {
     return (
       <div onAnimationEnd={() => setShow(false)}>
-        <FallingBunnies {...props} />
+        <FallingAstronauts {...props} />
       </div>
     )
   }
