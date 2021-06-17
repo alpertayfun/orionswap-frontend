@@ -7,6 +7,7 @@ import { Image, Heading, RowType, Toggle, Text } from '@orionswap/uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
+import tokens from 'config/constants/tokens'
 import { useFarms, usePriceStarfieldBusd, useGetApiPrices } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import useStarfieldPerBlock from 'hooks/useStarfieldPerBlock'
@@ -185,7 +186,7 @@ const Farms: React.FC = () => {
 
         const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-        const apr = isActive ? getFarmApr(farm.poolWeight, starfieldPerBlock, starfieldPrice, totalLiquidity) : 0
+        const apr = isActive ? getFarmApr(farm.poolWeight, starfieldPerBlock.div(10 ** tokens.starfield.decimals), starfieldPrice, totalLiquidity) : 0
 
         return { ...farm, apr, liquidity: totalLiquidity }
       })
