@@ -27,13 +27,13 @@ export const PoolsSlice = createSlice({
     setPoolsUserData: (state, action) => {
       const userData = action.payload
       state.data = state.data.map((pool) => {
-        const userPoolData = userData.find((entry) => entry.sousId === pool.id)
+        const userPoolData = userData.find((entry) => entry.id === pool.id)
         return { ...pool, userData: userPoolData }
       })
     },
     updatePoolsUserData: (state, action) => {
-      const { field, value, sousId } = action.payload
-      const index = state.data.findIndex((p) => p.id === sousId)
+      const { field, value, id } = action.payload
+      const index = state.data.findIndex((p) => p.id === id)
 
       if (index >= 0) {
         state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
@@ -51,8 +51,8 @@ export const fetchPoolsPublicDataAsync = () => async (dispatch) => {
   const totalStakings = await fetchPoolsTotalStaking()
 
   const liveData = poolsConfig.map((pool) => {
-    const blockLimit = blockLimits.find((entry) => entry.sousId === pool.id)
-    const totalStaking = totalStakings.find((entry) => entry.sousId === pool.id)
+    const blockLimit = blockLimits.find((entry) => entry.id === pool.id)
+    const totalStaking = totalStakings.find((entry) => entry.id === pool.id)
 
     return {
       ...blockLimit,
@@ -71,7 +71,7 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
   const nextHarvests = await fetchUserNextHarvests(account)
 
   const userData = poolsConfig.map((pool) => ({
-    sousId: pool.id,
+    id: pool.id,
     allowance: allowances[pool.id],
     stakingTokenBalance: stakingTokenBalances[pool.id],
     stakedBalance: stakedBalances[pool.id],
@@ -82,29 +82,29 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
   dispatch(setPoolsUserData(userData))
 }
 
-export const updateUserAllowance = (sousId: number, account: string) => async (dispatch) => {
+export const updateUserAllowance = (id: number, account: string) => async (dispatch) => {
   const allowances = await fetchPoolsAllowance(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
+  dispatch(updatePoolsUserData({ id, field: 'allowance', value: allowances[id] }))
 }
 
-export const updateUserBalance = (sousId: number, account: string) => async (dispatch) => {
+export const updateUserBalance = (id: number, account: string) => async (dispatch) => {
   const tokenBalances = await fetchUserBalances(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
+  dispatch(updatePoolsUserData({ id, field: 'stakingTokenBalance', value: tokenBalances[id] }))
 }
 
-export const updateUserStakedBalance = (sousId: number, account: string) => async (dispatch) => {
+export const updateUserStakedBalance = (id: number, account: string) => async (dispatch) => {
   const stakedBalances = await fetchUserStakeBalances(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
+  dispatch(updatePoolsUserData({ id, field: 'stakedBalance', value: stakedBalances[id] }))
 }
 
-export const updateUserPendingReward = (sousId: number, account: string) => async (dispatch) => {
+export const updateUserPendingReward = (id: number, account: string) => async (dispatch) => {
   const pendingRewards = await fetchUserPendingRewards(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
+  dispatch(updatePoolsUserData({ id, field: 'pendingReward', value: pendingRewards[id] }))
 }
 
-export const updateUserNextHarvest = (sousId: number, account: string) => async (dispatch) => {
+export const updateUserNextHarvest = (id: number, account: string) => async (dispatch) => {
   const nextHarvest = await fetchUserNextHarvests(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'nextHarvest', value: nextHarvest[sousId] }))
+  dispatch(updatePoolsUserData({ id, field: 'nextHarvest', value: nextHarvest[id] }))
 }
 
 export default PoolsSlice.reducer
