@@ -7,6 +7,7 @@ import { Image, Heading, RowType, Toggle, Text } from '@orionswap/uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
+import tokens from 'config/constants/tokens'
 import { useFarms, usePriceStarfieldBusd, useGetApiPrices } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import useStarfieldPerBlock from 'hooks/useStarfieldPerBlock'
@@ -185,7 +186,7 @@ const Farms: React.FC = () => {
 
         const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-        const apr = isActive ? getFarmApr(farm.poolWeight, starfieldPerBlock, starfieldPrice, totalLiquidity) : 0
+        const apr = isActive ? getFarmApr(farm.poolWeight, starfieldPerBlock.div(10 ** tokens.starfield.decimals), starfieldPrice, totalLiquidity) : 0
 
         return { ...farm, apr, liquidity: totalLiquidity }
       })
@@ -232,7 +233,11 @@ const Farms: React.FC = () => {
         case 'liquidity':
           return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
         default:
-          return farms
+          return orderBy(
+            farms,
+            (farm: FarmWithStakedValue) => (farm.token === tokens.starfield ? 1 : 0),
+            'desc',
+          )
       }
     }
 
@@ -311,6 +316,9 @@ const Farms: React.FC = () => {
       },
       multiplier: {
         multiplier: farm.multiplier,
+      },
+      depositFee: {
+        depositFee: farm.depositFee
       },
       details: farm,
     }

@@ -24,11 +24,11 @@ export const fetchPoolsBlockLimits = async () => {
   const starts = await multicall(masterChefABI, callsStartBlock)
   const ends = await multicall(masterChefABI, callsEndBlock)
 
-  return poolsWithEnd.map((cakePoolConfig, index) => {
+  return poolsWithEnd.map((poolConfig, index) => {
     const startBlock = starts[index]
     const endBlock = ends[index]
     return {
-      sousId: cakePoolConfig.id,
+      id: poolConfig.id,
       startBlock: new BigNumber(startBlock).toJSON(),
       endBlock: new BigNumber(endBlock).toJSON(),
     }
@@ -60,11 +60,11 @@ export const fetchPoolsTotalStaking = async () => {
 
   return [
     ...nonBnbPools.map((p, index) => ({
-      sousId: p.id,
+      id: p.id,
       totalStaked: new BigNumber(nonBnbPoolsTotalStaked[index]).toJSON(),
     })),
     ...bnbPool.map((p, index) => ({
-      sousId: p.id,
+      id: p.id,
       totalStaked: new BigNumber(bnbPoolsTotalStaked[index]).toJSON(),
     })),
   ]

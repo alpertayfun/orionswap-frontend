@@ -97,6 +97,13 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
   },
   {
     id: 6,
+    name: 'depositFee',
+    translationId: 999,
+    sortable: true,
+    label: 'Deposit Fee'
+  },
+  {
+    id: 7,
     name: 'details',
     translationId: 999,
     sortable: true,

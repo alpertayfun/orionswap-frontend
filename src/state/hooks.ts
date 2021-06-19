@@ -84,8 +84,8 @@ export const usePools = (account): Pool[] => {
   return pools.map(transformPool)
 }
 
-export const usePoolFromPid = (sousId: number): Pool => {
-  const pool = useSelector((state: State) => state.pools.data.find((p) => p.id === sousId))
+export const usePoolFromPid = (id: number): Pool => {
+  const pool = useSelector((state: State) => state.pools.data.find((p) => p.id === id))
   return transformPool(pool)
 }
 

@@ -14,7 +14,7 @@ import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
 
 const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
-  const { id: sousId, stakingToken, earningToken, isFinished, userData, isPromoted } = pool
+  const { id, stakingToken, earningToken, isFinished, userData, isPromoted } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
@@ -22,7 +22,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
 
   return (
     <StyledCard
-      isFinished={isFinished && sousId !== 0}
+      isFinished={isFinished && id !== 0}
       ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={`${t('Finished')}`}/>}
       isPromotedPool={ isPromoted ?? false }
     >
@@ -31,7 +31,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
           isStaking={accountHasStakedBalance}
           earningTokenSymbol={earningToken.symbol}
           stakingTokenSymbol={stakingToken.symbol}
-          isFinished={isFinished && sousId !== 0}
+          isFinished={isFinished && id !== 0}
         />
         <CardBody>
           <AprRow pool={pool} stakingTokenPrice={stakingTokenPrice} />

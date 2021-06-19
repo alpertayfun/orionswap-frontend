@@ -14,7 +14,7 @@ import CollectModal from '../Modals/CollectModal'
 interface HarvestActionsProps {
   earnings: BigNumber
   earningToken: Token
-  sousId: number
+  id: number
   isBnbPool: boolean
   isLoading?: boolean
   nextHarvest: BigNumber
@@ -27,7 +27,7 @@ const InlineBalance = styled(Balance)`
 const HarvestActions: React.FC<HarvestActionsProps> = ({
   earnings,
   earningToken,
-  sousId,
+  id,
   isBnbPool,
   isLoading = false,
   nextHarvest
@@ -40,7 +40,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const earningsDollarValue = formatNumber(earningTokenDollarBalance)
   const hasEarnings = earnings.toNumber() > 0
-  const isCompoundPool = sousId === 0
+  const isCompoundPool = id === 0
 
   const [onPresentCollect] = useModal(
     <CollectModal
@@ -48,7 +48,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
       fullBalance={fullBalance}
       earningToken={earningToken}
       earningsDollarValue={earningsDollarValue}
-      sousId={sousId}
+      id={id}
       isBnbPool={isBnbPool}
       isCompoundPool={isCompoundPool}
     />,
