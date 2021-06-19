@@ -90,6 +90,7 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
         poolWeight: poolWeight.toJSON(),
         multiplier: `${allocPoint.div(1000).toString()}X`,
+        depositFee: new BigNumber(info.depositFeeBP),
       }
     }),
   )

@@ -14,6 +14,7 @@ import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
+import DepositFee, { DepositFeeProps } from './DepositFee'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
 export interface RowProps {
@@ -22,6 +23,7 @@ export interface RowProps {
   earned: EarnedProps
   multiplier: MultiplierProps
   liquidity: LiquidityProps
+  depositFee: DepositFeeProps,
   details: FarmWithStakedValue
 }
 
@@ -36,6 +38,7 @@ const cells = {
   details: Details,
   multiplier: Multiplier,
   liquidity: Liquidity,
+  depositFee: DepositFee,
 }
 
 const CellInner = styled.div`
@@ -175,7 +178,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
       {handleRenderRow()}
       {shouldRenderChild && (
         <tr>
-          <td colSpan={6}>
+          <td colSpan={7}>
             <ActionPanel {...props} expanded={actionPanelExpanded} />
           </td>
         </tr>

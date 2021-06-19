@@ -233,7 +233,11 @@ const Farms: React.FC = () => {
         case 'liquidity':
           return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
         default:
-          return farms
+          return orderBy(
+            farms,
+            (farm: FarmWithStakedValue) => (farm.token === tokens.starfield ? 1 : 0),
+            'desc',
+          )
       }
     }
 
@@ -312,6 +316,9 @@ const Farms: React.FC = () => {
       },
       multiplier: {
         multiplier: farm.multiplier,
+      },
+      depositFee: {
+        depositFee: farm.depositFee
       },
       details: farm,
     }

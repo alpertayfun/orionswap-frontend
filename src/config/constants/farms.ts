@@ -85,6 +85,26 @@ const farms: FarmConfig[] = [
     },
     token: tokens.btcb,
     quoteToken: tokens.wbnb,
+  }, 
+  {
+    pid: 8,
+    lpSymbol: 'Starfield-BUSD LP',
+    lpAddresses: {
+      97: '',
+      56: '0x9369a1f51a8acc37a005bdc22397a76a64e24ee5',
+    },
+    token: tokens.starfield,
+    quoteToken: tokens.busd
+  },
+  {
+    pid: 9,
+    lpSymbol: 'Starfield-CAKE LP',
+    lpAddresses: {
+      97: '',
+      56: '0xe14dce81b7e8876659411b18a9c6a57ccb9957c8',
+    },
+    token: tokens.starfield,
+    quoteToken: tokens.cake
   }
 ]
 

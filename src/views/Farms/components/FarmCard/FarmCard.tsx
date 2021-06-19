@@ -96,6 +96,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account, 
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'Starfield'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
+  const depositFee = farm.depositFee && farm.depositFee.eq(0) ? 0 : farm.depositFee.div(100).toNumber().toLocaleString('en-US', { maximumFractionDigits: 2 })
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
@@ -134,6 +135,13 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account, 
         <Flex justifyContent="space-between">
           <Text>{t('Earn')}:</Text>
           <Text bold>{earnLabel}</Text>
+        </Flex>
+        <Flex justifyContent="space-between">
+          <Text>{t('Deposit Fee')}:</Text>
+          { farm.depositFee !== null ? 
+            <Text bold>{depositFee}%</Text> : 
+            <Skeleton height={24} width={80}/>
+          }
         </Flex>
         <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} userDataReady={userDataReady}/>
         <Divider />
