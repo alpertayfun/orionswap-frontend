@@ -42,7 +42,7 @@ const DepositFee: React.FunctionComponent<DepositFeeProps> = ({ depositFee }) =>
   
   const { t } = useTranslation()
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('The % fee deducted when depositing into the farm.'),
+    t('The % fee charged for every deposit into the farm. This is used to buy back and burn Starfield which helps increase Starfield value and farm APR.'),
     { placement: 'top-end', tooltipOffset: [20, 10] },
   )
 

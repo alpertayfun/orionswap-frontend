@@ -24,10 +24,10 @@ const StyledPage = styled(Container)`
 
 const PageMeta = () => {
   const { pathname } = useLocation()
-  const cakePriceUsd = usePriceStarfieldBusd()
-  const cakePriceUsdDisplay = cakePriceUsd.eq(0)
+  const starfieldPriceUsd = usePriceStarfieldBusd()
+  const cakePriceUsdDisplay = starfieldPriceUsd.eq(0)
     ? ''
-    : `$${cakePriceUsd.toNumber().toLocaleString(undefined, {
+    : `$${starfieldPriceUsd.toNumber().toLocaleString(undefined, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 4,
       })}`
