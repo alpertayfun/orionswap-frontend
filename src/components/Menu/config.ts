@@ -57,10 +57,6 @@ const config: MenuEntry[] = [
     icon: 'MoreIcon',
     items: [
       {
-        label: 'Contact',
-        href: 'https://docs.orionswap.finance/contact-us',
-      },
-      {
         label: 'Github',
         href: 'https://github.com/orionswap',
       },
