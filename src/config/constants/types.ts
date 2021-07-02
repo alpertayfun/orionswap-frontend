@@ -28,7 +28,6 @@ export interface FarmConfig {
   lpAddresses: Address
   token: Token
   quoteToken: Token
-  multiplier?: string
   isCommunity?: boolean
   dual?: {
     rewardPerBlock: number

@@ -9,6 +9,7 @@ import { getFarmApr } from 'utils/apr'
 import { useFarms, usePriceStarfieldBusd, useGetApiPrices } from 'state/hooks'
 import { getAddress } from 'utils/addressHelpers'
 import useStarfieldPerBlock from 'hooks/useStarfieldPerBlock'
+import tokens from 'config/constants/tokens'
 
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
@@ -33,12 +34,12 @@ const EarnAPRCard = () => {
   const { data: farmsLP } = useFarms()
   const prices = useGetApiPrices()
   const starfieldPrice = usePriceStarfieldBusd()
-  const starfieldPerBlock = useStarfieldPerBlock()
+  const starfieldPerBlock = useStarfieldPerBlock().div(10 ** tokens.starfield.decimals)
 
   const highestApr = useMemo(() => {
     const aprs = farmsLP
       // Filter inactive farms, because their theoretical APR is super high. In practice, it's 0.
-      .filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
+      .filter((farm) => farm.pid !== 0 && !farm.poolWeight.eq(0))
       .map((farm) => {
         if (farm.lpTotalInQuoteToken && prices) {
           const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]

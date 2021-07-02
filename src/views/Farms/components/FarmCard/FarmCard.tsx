@@ -6,12 +6,15 @@ import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
 import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
+import useStarfieldPerBlock from 'hooks/useStarfieldPerBlock'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import tokens from 'config/constants/tokens'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
+
 
 export interface FarmWithStakedValue extends Farm {
   apr?: number
@@ -84,6 +87,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account, 
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
+  const starfieldPerBlock = useStarfieldPerBlock().div(10 ** tokens.starfield.decimals)
   // We assume the token name is coin pair + lp e.g. Starfield-BNB LP, LINK-BNB LP,
   // NAR-Starfield LP. The images should be Starfield-bnb.svg, link-bnb.svg, nar-Starfield.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
@@ -96,7 +100,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account, 
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'Starfield'
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
-  const depositFee = farm.depositFee && farm.depositFee.eq(0) ? 0 : farm.depositFee.div(100).toNumber().toLocaleString('en-US', { maximumFractionDigits: 2 })
+  const depositFee = farm.depositFee && farm.depositFee.isGreaterThan(0) ? farm.depositFee.div(100).toNumber().toLocaleString('en-US', { maximumFractionDigits: 2 }) : 0
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
@@ -112,7 +116,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account, 
       <FCard isPromotedFarm={isPromotedFarm}>
         <CardHeading
           lpLabel={lpLabel}
-          multiplier={farm.multiplier}
+          multiplier={farm.poolWeight && starfieldPerBlock.times(farm.poolWeight).toNumber().toLocaleString('en-US', { maximumFractionDigits: 2 })}
           isCommunityFarm={farm.isCommunity}
           farmImage={farmImage}
           tokenSymbol={farm.token.symbol}

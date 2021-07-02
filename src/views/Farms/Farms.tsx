@@ -124,7 +124,7 @@ const Farms: React.FC = () => {
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
-  const starfieldPerBlock = useStarfieldPerBlock()
+  const starfieldPerBlock = useStarfieldPerBlock().div(10 ** tokens.starfield.decimals)
 
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
@@ -161,8 +161,8 @@ const Farms: React.FC = () => {
     }
   }, [isArchived, dispatch, account])
 
-  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && !isArchivedPid(farm.pid))
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -186,7 +186,7 @@ const Farms: React.FC = () => {
 
         const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-        const apr = isActive ? getFarmApr(farm.poolWeight, starfieldPerBlock.div(10 ** tokens.starfield.decimals), starfieldPrice, totalLiquidity) : 0
+        const apr = isActive ? getFarmApr(farm.poolWeight, starfieldPerBlock, starfieldPrice, totalLiquidity) : 0
 
         return { ...farm, apr, liquidity: totalLiquidity }
       })
@@ -221,7 +221,7 @@ const Farms: React.FC = () => {
         case 'multiplier':
           return orderBy(
             farms,
-            (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
+            (farm: FarmWithStakedValue) => (farm.poolWeight ? farm.poolWeight : 0),
             'desc',
           )
         case 'earned':
@@ -295,7 +295,7 @@ const Farms: React.FC = () => {
     const row: RowProps = {
       apr: {
         value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
-        multiplier: farm.multiplier,
+        multiplier: farm.poolWeight && starfieldPerBlock.times(farm.poolWeight).toNumber().toLocaleString('en-US', { maximumFractionDigits: 2 }),
         lpLabel,
         tokenAddress,
         quoteTokenAddress,
@@ -315,7 +315,7 @@ const Farms: React.FC = () => {
         liquidity: farm.liquidity,
       },
       multiplier: {
-        multiplier: farm.multiplier,
+        multiplier: farm.poolWeight && starfieldPerBlock.times(farm.poolWeight).toNumber().toLocaleString('en-US', { maximumFractionDigits: 2 }),
       },
       depositFee: {
         depositFee: farm.depositFee
@@ -417,7 +417,7 @@ const Farms: React.FC = () => {
                     value: 'apr',
                   },
                   {
-                    label: 'Multiplier',
+                    label: 'Starfield Per Block',
                     value: 'multiplier',
                   },
                   {

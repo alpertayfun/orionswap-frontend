@@ -5,6 +5,7 @@ import { LinkExternal, Text } from '@orionswap/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
+import isArchivedPid from 'utils/farmHelpers'
 
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
@@ -142,7 +143,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const farm = details
 
   const { t } = useTranslation()
-  const isActive = farm.multiplier !== '0X'
+  const isActive = !isArchivedPid(farm.pid)
   const { quoteToken, token, dual } = farm
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
@@ -178,7 +179,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <Apr {...apr} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text>{t('Multiplier')}</Text>
+          <Text>{t('Starfield Per BLock')}</Text>
           <Multiplier {...multiplier} />
         </ValueWrapper>
         <ValueWrapper>
