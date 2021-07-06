@@ -10,7 +10,7 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'Starfield',
     lpAddresses: {
-      97: '0x2F6BD2B6ACc688B14fbA499eA0082bD93A04b0CE',
+      97: '0xDe74ac1668F030857B4d7F481Ef0e70F8d2656d7',
       56: '0xaB5af03653349a052B49f167f4C709599C5f3844',
     },
     token: tokens.starfield,
