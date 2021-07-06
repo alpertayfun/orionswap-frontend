@@ -7,7 +7,7 @@ const tokens = {
     symbol: 'Starfield',
     address: {
       56: '0xaB5af03653349a052B49f167f4C709599C5f3844',
-      97: '0x2F6BD2B6ACc688B14fbA499eA0082bD93A04b0CE',
+      97: '0xDe74ac1668F030857B4d7F481Ef0e70F8d2656d7',
     },
     decimals: 18,
     projectLink: 'https://orionswap.finance/',
@@ -439,7 +439,7 @@ const tokens = {
     symbol: 'wBNB',
     address: {
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
-      97: '0x4bab122b3e4ef87d02f57e327ab1b5e798a2b414',
+      97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
     },
     decimals: 18,
     projectLink: 'https://OrionSwap.finance/',
@@ -601,7 +601,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
-      97: '0x2a7D9781dAD970aD014B6bdbC1D0D8d55d0d6814',
+      97: '0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
@@ -610,7 +610,7 @@ const tokens = {
     symbol: 'ETH',
     address: {
       56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
-      97: '',
+      97: '0x8babbb98678facc7342735486c851abd7a0d17ca',
     },
     decimals: 18,
     projectLink: 'https://ethereum.org/en/',
@@ -682,7 +682,7 @@ const tokens = {
     symbol: 'DAI',
     address: {
       56: '0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3',
-      97: '',
+      97: '0x8a9424745056Eb399FD19a0EC26A14316684e274',
     },
     decimals: 18,
     projectLink: 'http://www.makerdao.com/',
@@ -735,7 +735,7 @@ const tokens = {
   usdt: {
     symbol: 'USDT',
     address: {
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
+      97: '0x7ef95a0fee0dd31b22626fa2e10ee6a223f8a684',
       56: '0x55d398326f99059ff775485246999027b3197955',
     },
     decimals: 18,

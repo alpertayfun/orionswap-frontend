@@ -1,6 +1,6 @@
 export default {
   masterChef: {
-    97: '0x0c873F865791869fD7F9067142c67AFb7Bd3D792',
+    97: '0xc7AEaA136657A9Ee1Bb21CE9a170F7E77151f46A',
     56: '0xFc4D8B845931cBBCa2FE545a874022ebAC1d0b8B',
   },
   multiCall: {
