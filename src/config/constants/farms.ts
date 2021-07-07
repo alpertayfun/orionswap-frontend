@@ -20,7 +20,7 @@ const farms: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'Starfield-BNB LP',
     lpAddresses: {
-      97: '0x38637b837d97565696870fc2e35331df0b56ca60',
+      97: '0x38637B837D97565696870fC2E35331DF0b56CA60',
       56: '0x798A8752B39da59fba12Ab98058440a0e0990e19',
     },
     token: tokens.starfield,
